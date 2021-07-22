@@ -12,13 +12,12 @@
 #include <cstdio>
 #include <cstdlib>
 #include <stdarg.h>
-#include <stdarg.h>
 #include <windows.h>
 #include "graphics.h"
 
 using namespace std;
-//1gb=2^(30)¸ödoubleÊı¾İÀàĞÍ
-//¸Ä½ø£º1.Ä©Î²Ö¸ÕëÖ¸Ïò²ãÊ×Ö¸Õë
+//1gb=2^(30)ä¸ªdoubleæ•°æ®ç±»å‹
+//æ”¹è¿›ï¼š1.æœ«å°¾æŒ‡é’ˆæŒ‡å‘å±‚é¦–æŒ‡é’ˆ
 template <typename T> class tree
 		  //three ways to construct:
 		  //1.defalut,without head value.
@@ -26,7 +25,7 @@ template <typename T> class tree
 		  //3.initialize the nodes with maximum  number of has_nodes children.
 {
 public:
-	struct node//Ê÷µÄ½Úµã
+	struct node//æ ‘çš„èŠ‚ç‚¹
 	{
 		friend class tree;
 
@@ -69,37 +68,37 @@ public:
 
 	tree()
 	{
-		this->head_ptr = new node;//Í·Ö¸Õë
-		this->ope_ptr = this->head_ptr;//×î½ü²Ù×÷µÄÖ¸Õë
-		this->parent_ptr = this->head_ptr;//ÒòÎªÖ»ÓĞÒ»¸ö½Úµã£¬ËùÒÔÏÈÔİÊ±°ÑË«Ç×½ÚµãÉèÖÃÎª±¾½Úµã
+		this->head_ptr = new node;//å¤´æŒ‡é’ˆ
+		this->ope_ptr = this->head_ptr;//æœ€è¿‘æ“ä½œçš„æŒ‡é’ˆ
+		this->parent_ptr = this->head_ptr;//å› ä¸ºåªæœ‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œæ‰€ä»¥å…ˆæš‚æ—¶æŠŠåŒäº²èŠ‚ç‚¹è®¾ç½®ä¸ºæœ¬èŠ‚ç‚¹
 		this->head_ptr->has_nodes = 0;
 		this->head_ptr->self_layer = 1;
-		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//µÚÒ»²ã²ã²ÎÊı
-		this->nodes_sum = 1;//Ëã³ö½Úµã×ÜÊı
+		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//ç¬¬ä¸€å±‚å±‚å‚æ•°
+		this->nodes_sum = 1;//ç®—å‡ºèŠ‚ç‚¹æ€»æ•°
 	}
 
 	tree(T value)
 	{
-		this->head_ptr = new node;//Í·Ö¸Õë
-		this->ope_ptr = this->head_ptr;//×î½ü²Ù×÷µÄÖ¸Õë
-		this->parent_ptr = this->head_ptr;//ÒòÎªÖ»ÓĞÒ»¸ö½Úµã£¬ËùÒÔÏÈÔİÊ±°ÑË«Ç×½ÚµãÉèÖÃÎª±¾½Úµã
-		this->head_ptr->value = value;//Í·Ö¸ÕëÖµ
+		this->head_ptr = new node;//å¤´æŒ‡é’ˆ
+		this->ope_ptr = this->head_ptr;//æœ€è¿‘æ“ä½œçš„æŒ‡é’ˆ
+		this->parent_ptr = this->head_ptr;//å› ä¸ºåªæœ‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œæ‰€ä»¥å…ˆæš‚æ—¶æŠŠåŒäº²èŠ‚ç‚¹è®¾ç½®ä¸ºæœ¬èŠ‚ç‚¹
+		this->head_ptr->value = value;//å¤´æŒ‡é’ˆå€¼
 		this->head_ptr->has_nodes = 0;
 		this->head_ptr->self_layer = 1;
-		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//µÚÒ»²ã²ã²ÎÊı
-		this->nodes_sum = 1;//Ëã³ö½Úµã×ÜÊı
+		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//ç¬¬ä¸€å±‚å±‚å‚æ•°
+		this->nodes_sum = 1;//ç®—å‡ºèŠ‚ç‚¹æ€»æ•°
 	}
 
 	tree(T* list_node,__int64 has_nodes,__int64 n)//use an array to construct a n-way tree.
 	{
-		this->head_ptr = new node;//Í·Ö¸Õë
-		this->ope_ptr = this->head_ptr;//×î½ü²Ù×÷µÄÖ¸Õë
-		this->parent_ptr = this->head_ptr;//ÒòÎªÖ»ÓĞÒ»¸ö½Úµã£¬ËùÒÔÏÈÔİÊ±°ÑË«Ç×½ÚµãÉèÖÃÎª±¾½Úµã
-		this->head_ptr->value = list_node[0];//Í·Ö¸ÕëÖµ
+		this->head_ptr = new node;//å¤´æŒ‡é’ˆ
+		this->ope_ptr = this->head_ptr;//æœ€è¿‘æ“ä½œçš„æŒ‡é’ˆ
+		this->parent_ptr = this->head_ptr;//å› ä¸ºåªæœ‰ä¸€ä¸ªèŠ‚ç‚¹ï¼Œæ‰€ä»¥å…ˆæš‚æ—¶æŠŠåŒäº²èŠ‚ç‚¹è®¾ç½®ä¸ºæœ¬èŠ‚ç‚¹
+		this->head_ptr->value = list_node[0];//å¤´æŒ‡é’ˆå€¼
 		this->head_ptr->has_nodes = 0;
 		this->head_ptr->self_layer = 1;
-		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//µÚÒ»²ã²ã²ÎÊı
-		this->nodes_sum = 1;//Ëã³ö½Úµã×ÜÊı
+		this->layer.insert(pair<__int64, tuple<__int64, node*>>(1, { 1, head_ptr }));//ç¬¬ä¸€å±‚å±‚å‚æ•°
+		this->nodes_sum = 1;//ç®—å‡ºèŠ‚ç‚¹æ€»æ•°
 		node* save_ptr=nullptr;
 		this->add_node(list_node[1], 1);
 		for (__int64 i = 2; i < n; i++)
@@ -127,7 +126,7 @@ public:
 			}
 		}
 	}
-	//Îö¹¹linked_list
+	//ææ„linked_list
 	~tree()
 	{
 		
@@ -158,7 +157,7 @@ public:
 					break;
 				}
 			}
-			node* temp=get<1>(other.layer[i]);//¸ºÔğ±éÀúµÄÖ¸Õë
+			node* temp=get<1>(other.layer[i]);//è´Ÿè´£éå†çš„æŒ‡é’ˆ
 			node* cat_ptr;
 			int64 current_node = 1;
 			int64 sibling_times = 0;
@@ -185,8 +184,8 @@ public:
 						ope_ptr->ptr[current_node-2]->sibling = add_ptr;
 					}
 				}
-				//ÍË³öÌõ¼ş
-				//1.tempµÄsiblingÎª¿ÕÖ¸Õë
+				//é€€å‡ºæ¡ä»¶
+				//1.tempçš„siblingä¸ºç©ºæŒ‡é’ˆ
 				current_node++;
 				if (temp->sibling==nullptr)
 				{
@@ -252,8 +251,8 @@ public:
 		this->ope_ptr->value = value;
 	}
 
-	//get_tree_nodes:×î¶à8000¸ö½Úµã×óÓÒ
-	__int64 get_tree_nodes(node* ptr, __int64 sum)//sum=0Ëã³ö¸Ã½ÚµãÏÂµÄËùÓĞ½Úµã£»sum=1¼ÓÉÏ±¾Éí
+	//get_tree_nodes:æœ€å¤š8000ä¸ªèŠ‚ç‚¹å·¦å³
+	__int64 get_tree_nodes(node* ptr, __int64 sum)//sum=0ç®—å‡ºè¯¥èŠ‚ç‚¹ä¸‹çš„æ‰€æœ‰èŠ‚ç‚¹ï¼›sum=1åŠ ä¸Šæœ¬èº«
 	{
 		if (ptr->ptr.size() == 0)
 		{
@@ -598,7 +597,7 @@ public:
 	}
 
 	void change_ope(unsigned __int64 layer_num, unsigned __int64 list_num)
-	//ÁíÒ»ÖÖ·½·¨£ºÏÈËã³öÔÚÕâ²ãµÄµÚ¼¸¸ö£¬ÔÙÓÃÇó×ÓÊ÷½ÚµãµÄ·½·¨Çóµ½ÊÇÔÚµÚ¼¸¿Ã×ÓÊ÷ÉÏ£¨ÒªÄÜÖ»Çó³öÕâ²ã×ÓÊ÷µÄ½ÚµãÊı)
+	//å¦ä¸€ç§æ–¹æ³•ï¼šå…ˆç®—å‡ºåœ¨è¿™å±‚çš„ç¬¬å‡ ä¸ªï¼Œå†ç”¨æ±‚å­æ ‘èŠ‚ç‚¹çš„æ–¹æ³•æ±‚åˆ°æ˜¯åœ¨ç¬¬å‡ æ£µå­æ ‘ä¸Šï¼ˆè¦èƒ½åªæ±‚å‡ºè¿™å±‚å­æ ‘çš„èŠ‚ç‚¹æ•°)
 	//change ope_ptr and parent_ptr
 	//para:layer_num,list_num
 	//usage other method:locate
@@ -655,7 +654,7 @@ public:
 		change_ope(get<0>(temp), get<1>(temp));
 	}
 
-	vector<tuple<__int64, __int64>> find_bfs(T value)//¹ã¶ÈËÑË÷
+	vector<tuple<__int64, __int64>> find_bfs(T value)//å¹¿åº¦æœç´¢
 	{
 		node* ptr;
 		vector<tuple<__int64, __int64>>save_ptrs;
@@ -685,7 +684,7 @@ public:
 		return save_ptrs;
 	}
 
-	vector<tuple<__int64, __int64>> find_dfs(T value)//Éî¶ÈËÑË÷
+	vector<tuple<__int64, __int64>> find_dfs(T value)//æ·±åº¦æœç´¢
 	{
 		vector<tuple<__int64, __int64>>save_ptrs;
 		printf("----------------------------------\n");
@@ -704,7 +703,7 @@ public:
 		return save_ptrs;
 	}
 
-	__int64 find_child_value(node* ptr,const T& value)//·µ»Ø¸¸Ä¸½ÚµãÏÂÆ¥Åä¶ÔÓ¦ÖµµÄº¢×Ó½ÚµãµÄÎ»ÖÃ¡£
+	__int64 find_child_value(node* ptr,const T& value)//è¿”å›çˆ¶æ¯èŠ‚ç‚¹ä¸‹åŒ¹é…å¯¹åº”å€¼çš„å­©å­èŠ‚ç‚¹çš„ä½ç½®ã€‚
 	{
 		for (int i=0;i<ptr->ptr.size();i++)
 		{
@@ -718,7 +717,7 @@ public:
 
 	void add_node(T value, __int64 direction)
 	{
-		if (direction == 1)//×î½ü²Ù×÷µÄ½ÚµãÏòÏÂÀ©Õ¹Ò»¸ö½Úµã
+		if (direction == 1)//æœ€è¿‘æ“ä½œçš„èŠ‚ç‚¹å‘ä¸‹æ‰©å±•ä¸€ä¸ªèŠ‚ç‚¹
 		{
 			if (!this->ope_ptr->has_nodes)
 			{
@@ -786,7 +785,7 @@ public:
 				this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1]->value = value;
 				this->ope_ptr->sibling = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
 				this->ope_ptr = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
-				get<0>(this->layer[this->layer_num]) += 1;//¸Ä±ä²ã×Ü½ÚµãÊı
+				get<0>(this->layer[this->layer_num]) += 1;//æ”¹å˜å±‚æ€»èŠ‚ç‚¹æ•°
 				this->ope_ptr->self_layer = this->parent_ptr->self_layer + 1;
 				if (this->parent_ptr->sibling != nullptr)
 				{
@@ -971,7 +970,7 @@ public:
 		}
 		this->nodes_sum -= 1;
 		get<0>(this->layer[this->ope_ptr->self_layer]) -= 1;
-		if (this->parent_ptr->ptr.size() == 1)//µ¥½ÚµãÆ´½ÓÉÏÈ¥
+		if (this->parent_ptr->ptr.size() == 1)//å•èŠ‚ç‚¹æ‹¼æ¥ä¸Šå»
 		{
 			for (__int64 j = 0; j < this->ope_ptr->ptr.size(); j++)
 			{
@@ -994,7 +993,7 @@ public:
 			tuple<__int64, __int64>temp_ope_ptr = this->return_ptr(parent_ptr);
 			this->change_ope(get<0>(temp_ope_ptr), get<1>(temp_ope_ptr));
 		}
-		else//½ÚµãÏÂËùÓĞÁ¬½Ó½ÚµãÈ«²¿±»×ª½»¸ø×ó±ßµÄĞÖµÜ½Úµã
+		else//èŠ‚ç‚¹ä¸‹æ‰€æœ‰è¿æ¥èŠ‚ç‚¹å…¨éƒ¨è¢«è½¬äº¤ç»™å·¦è¾¹çš„å…„å¼ŸèŠ‚ç‚¹
 		{
 			if (this->parent_ptr->ptr.size() < i + 2)
 			{
@@ -1104,7 +1103,7 @@ public:
 		}
 	}
 
-	//clear:×î¶à7000¸ö½Úµã
+	//clear:æœ€å¤š7000ä¸ªèŠ‚ç‚¹
 	void clear()
 	{
 		this->del_node_clear();
@@ -1178,8 +1177,8 @@ public:
 protected:
 	node* head_ptr;
 	node* ope_ptr;
-	node* parent_ptr;//ºÍ×îºó²Ù×÷Ö¸ÕëÒ»Æë±ä¶¯,×öË½ÓĞÊı¾İ
-	map<__int64, tuple<__int64, node*>>layer;//µÚÒ»¸ö__int64£ºµÚ¼¸²ã£»µÚ¶ş¸ö__int64:Õâ²ãµÄ½ÚµãÊıÁ¿£»µÚÈı¸önode*:Ö¸Ïò²ãÊ×½Úµã
+	node* parent_ptr;//å’Œæœ€åæ“ä½œæŒ‡é’ˆä¸€é½å˜åŠ¨,åšç§æœ‰æ•°æ®
+	map<__int64, tuple<__int64, node*>>layer;//ç¬¬ä¸€ä¸ª__int64ï¼šç¬¬å‡ å±‚ï¼›ç¬¬äºŒä¸ª__int64:è¿™å±‚çš„èŠ‚ç‚¹æ•°é‡ï¼›ç¬¬ä¸‰ä¸ªnode*:æŒ‡å‘å±‚é¦–èŠ‚ç‚¹
 	void del_node_clear()
 	{
 		static __int64 layer_num = this->layer_num;
@@ -1306,9 +1305,9 @@ public:
 	//{
 	//	
 	//}
-	void add_node(T value,__int64 direction)//ÏŞÖÆÃ¿¸ö½ÚµãÏÂ×î¶àÌí¼ÓÁ½¸ö×Ó½Úµã£¬³¬³ö²»»áÌáĞÑ´íÎó
+	void add_node(T value,__int64 direction)//é™åˆ¶æ¯ä¸ªèŠ‚ç‚¹ä¸‹æœ€å¤šæ·»åŠ ä¸¤ä¸ªå­èŠ‚ç‚¹ï¼Œè¶…å‡ºä¸ä¼šæé†’é”™è¯¯
 	{
-		if (direction == 1)//×î½ü²Ù×÷µÄ½ÚµãÏòÏÂÀ©Õ¹Ò»¸ö½Úµã
+		if (direction == 1)//æœ€è¿‘æ“ä½œçš„èŠ‚ç‚¹å‘ä¸‹æ‰©å±•ä¸€ä¸ªèŠ‚ç‚¹
 		{
 			if (this->ope_ptr->has_nodes == 2)
 			{
@@ -1372,7 +1371,7 @@ public:
 								this->parent_ptr->ptr[this->parent_ptr->has_nodes - 2]->sibling = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
 							}
 							this->ope_ptr = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
-							get<0>(this->layer[this->layer_num]) += 1;//¸Ä±ä²ã×Ü½ÚµãÊı
+							get<0>(this->layer[this->layer_num]) += 1;//æ”¹å˜å±‚æ€»èŠ‚ç‚¹æ•°
 							this->ope_ptr->self_layer = this->layer_num;
 							this->parent_ptr = memo_ptr;
 						}
@@ -1412,7 +1411,7 @@ public:
 						this->ope_ptr->sibling = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
 					}
 					this->ope_ptr = this->parent_ptr->ptr[this->parent_ptr->has_nodes - 1];
-					get<0>(this->layer[this->layer_num]) += 1;//¸Ä±ä²ã×Ü½ÚµãÊı
+					get<0>(this->layer[this->layer_num]) += 1;//æ”¹å˜å±‚æ€»èŠ‚ç‚¹æ•°
 					this->ope_ptr->self_layer = this->layer_num;
 				}
 			}
@@ -1494,7 +1493,7 @@ public:
 protected:
 };
 
-template <typename T>//ÑÏÖØµÄÎÛÈ¾²ÎÊıÎÊÌâ
+template <typename T>//ä¸¥é‡çš„æ±¡æŸ“å‚æ•°é—®é¢˜
 	binary_tree<T> add_tree(const binary_tree<T>&tree_first,const binary_tree<T>&tree_second)
 	{	
 			binary_tree<T>tree_added = tree_first;
@@ -1534,9 +1533,9 @@ template <typename T>//ÑÏÖØµÄÎÛÈ¾²ÎÊıÎÊÌâ
 			}
 			tree_added.nodes_sum += tree_toadd.nodes_sum;
 			tree_added.route_front_assign(tree_added.ope_ptr->ptr[0], tree_added.ope_ptr->self_layer+2);
-			if (tree_added.ope_ptr->has_nodes == 1)//Ìí¼ÓÊ÷µÄ½ÚµãÖ»ÓĞÒ»¸öÊ±£¬ÕâÊ±ËùÓĞÊ÷µÄĞĞÖ¸Õë¶¼Òª¸Ä±ä
+			if (tree_added.ope_ptr->has_nodes == 1)//æ·»åŠ æ ‘çš„èŠ‚ç‚¹åªæœ‰ä¸€ä¸ªæ—¶ï¼Œè¿™æ—¶æ‰€æœ‰æ ‘çš„è¡ŒæŒ‡é’ˆéƒ½è¦æ”¹å˜
 			{
-				if (tree_added.ope_ptr==get<1>(tree_added.layer[tree_added.ope_ptr->self_layer]))//Èç¹û±»²Ù×÷Ö¸ÕëÊÇĞĞÖ¸Õë
+				if (tree_added.ope_ptr==get<1>(tree_added.layer[tree_added.ope_ptr->self_layer]))//å¦‚æœè¢«æ“ä½œæŒ‡é’ˆæ˜¯è¡ŒæŒ‡é’ˆ
 				{
 					if (tree_added.ope_ptr->self_layer+tree_toadd.layer_num>= tree_added.layer_num)
 					{
@@ -1588,7 +1587,7 @@ template <typename T>//ÑÏÖØµÄÎÛÈ¾²ÎÊıÎÊÌâ
 					tree_added.layer_num = tree_added.ope_ptr->self_layer + tree_toadd.layer_num;
 				}
 			}
-			//´¦ÀísiblingÁ¬½ÓµÄ´úÂë
+			//å¤„ç†siblingè¿æ¥çš„ä»£ç 
 			while (1)
 			{
 				tree<T>::node* toadd_node;
@@ -1604,7 +1603,7 @@ template <typename T>//ÑÏÖØµÄÎÛÈ¾²ÎÊıÎÊÌâ
 						}
 						row_ptr = row_ptr->sibling;
 					}
-					tree_added.change_ope(row_ptr);//¿ÉÔÚÉÏÃæµÄwhileÑ­»·Àï½ÚÔ¼ĞÔÄÜ
+					tree_added.change_ope(row_ptr);//å¯åœ¨ä¸Šé¢çš„whileå¾ªç¯é‡ŒèŠ‚çº¦æ€§èƒ½
 					return tree_added;
 				}
 				else
